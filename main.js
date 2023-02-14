@@ -1,14 +1,15 @@
 const timerDisplay = document.querySelector("#timer");
 const pomo = document.querySelector("#pomo-num");
+const pomoTotal = document.querySelector('#pomo-num-total')
 const etiqueta = document.querySelector('#etiqueta')
 import tmi from 'tmi.js'
 var sound = new Audio("music.mp3");
 
 
 // Variables necesarias
-var timer = 60 * 60;
+var timer = 1 * 60;
 var pomoCount = 0;
-const pomodoroTotal = 12;
+var pomodoroTotal = 14;
 var interval;
 var minutos;
 var segundos;
@@ -27,7 +28,7 @@ function startTimer() {
     if (--timer < 0) {
       timer = 60 * 60;
       sound.play()
-
+      etiqueta.innerHTML = 'PRODUCTIVO'
       if (pomoCount === pomodoroTotal) {
         clearInterval(interval);
         console.log("Se completaron los 12 pomos");
@@ -36,10 +37,10 @@ function startTimer() {
       }
 
       // Iniciar cuenta regresiva de 10 minutos
-      timer = 10 * 60;
+      timer = 2 * 60;
       pomoCount++;
+      etiqueta.innerHTML = 'DESCANSO'
       pomo.innerHTML = pomoCount
-
     }
   }, 1000);
 }
@@ -48,6 +49,7 @@ function startTimer() {
 function stopTimer() {
   savedTimer = timer;
   clearInterval(interval);
+  etiqueta.innerHTML = 'EN PAUSA'
   sound.play()
 }
 
@@ -56,6 +58,7 @@ function restartTimer() {
   stopTimer();
   timer = savedTimer;
   pomoCount = 0;
+  etiqueta.innerHTML = '💻'
   startTimer();
   sound.play()
 }
@@ -64,15 +67,37 @@ function restartBreak() {
   stopTimer();
   timer = 10 * 60;
   pomoCount = 0;
+  etiqueta.innerHTML = 'DESCANSO'
   startTimer();
   sound.play()
+}
+
+function restartPomo() {
+  stopTimer();
+  timer = 60 * 60;
+  pomoCount = 0;
+  etiqueta.innerHTML = 'PRODUCTIVO'
+  startTimer();
+  sound.play()
+}
+
+
+function pomoi(num) {
+  pomoCount = num
+  pomo.innerHTML = pomoCount
+}
+
+function pomot(num) {
+  pomodoroTotal = num;
+  pomoTotal.innerHTML = pomodoroTotal
+
 }
 
 
 
 // Conectar a Twitch a través de tmi.js
 const client = new tmi.Client({
-  channels: ['brunispet']
+  channels: ['cuartodechenz']
 });
 
 
@@ -80,18 +105,42 @@ client.connect();
 
 // Escuchar comandos en Twitch
 client.on("chat", function (channel, userstate, message, self) {
+  if (!message.startsWith('!')) return;
+  const args = message.slice(1).split(' ');
+  const command = args.shift().toLowerCase();
   const username = userstate.username;
   const mod = userstate?.mod
+  const num = parseInt(args)
+  console.log(command)
+  console.log(num)
   if (username === 'cuartodechenz' || mod) {
-    if (message === "!start") {
-      startTimer();
-    } else if (message === "!pause") {
-      stopTimer();
-    } else if (message === "!restart") {
-      restartTimer();
-    } else if (message === "!restartbreak") {
-      restartBreak();
+
+    switch (command) {
+      case "start":
+        startTimer();
+        break;
+      case "pause":
+        stopTimer();
+        break;
+      case "restart":
+        restartTimer();
+        break;
+      case "timebreak":
+        restartBreak()
+        break;
+      case "pomotime":
+        restartPomo()
+        break;
+      case "pomoi":
+        pomoi(num)
+        break;
+      case "pomot":
+        pomot(num)
+        break;
+      default:
+        console.log('No es un comando valido')
     }
+
   }
 });
 

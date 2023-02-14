@@ -26,6 +26,10 @@ body {
 
 #pomos {
   margin-left: 16px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #horarios {
