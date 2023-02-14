@@ -7,7 +7,7 @@ var sound = new Audio("music.mp3");
 
 
 // Variables necesarias
-var timer = 1 * 60;
+var timer = 60 * 60;
 var pomoCount = 0;
 var pomodoroTotal = 14;
 var interval;
@@ -37,7 +37,7 @@ function startTimer() {
       }
 
       // Iniciar cuenta regresiva de 10 minutos
-      timer = 2 * 60;
+      timer = 10 * 60;
       pomoCount++;
       etiqueta.innerHTML = 'DESCANSO'
       pomo.innerHTML = pomoCount
