@@ -5,20 +5,21 @@ const etiqueta = document.querySelector('#etiqueta')
 import tmi from 'tmi.js'
 var sound = new Audio("music.mp3");
 
-
 // Variables necesarias
-var timer = 60 * 60;
+var timer = 10 * 60;
 var pomoCount = 0;
-var pomodoroTotal = 14;
+var pomodoroTotal = 3;
 var interval;
 var minutos;
 var segundos;
 var savedTimer = 0;
+
 // Función para iniciar la cuenta regresiva
 function startTimer() {
   interval = setInterval(function () {
     minutos = parseInt(timer / 60, 10);
     segundos = parseInt(timer % 60, 10);
+    pomoTotal.innerHTML = pomodoroTotal
 
     minutos = minutos < 10 ? "0" + minutos : minutos;
     segundos = segundos < 10 ? "0" + segundos : segundos;
@@ -26,21 +27,32 @@ function startTimer() {
     timerDisplay.innerHTML = minutos + ":" + segundos;
 
     if (--timer < 0) {
-      timer = 60 * 60;
-      sound.play()
-      etiqueta.innerHTML = 'PRODUCTIVO'
-      if (pomoCount === pomodoroTotal) {
+      if (pomoCount % 3 === 0) {
+        timer = 10 * 60; // Pomodoro de 1 minuto de trabajo
+        etiqueta.innerHTML = 'DESCANSO 🍙🥤';
+      } else if (pomoCount % 3 === 1) {
+        etiqueta.innerHTML = 'PRODUCTIVO 📚📖';
+        timer = 60 * 60; // Pomodoro de 2 minutos de descanso
+      } else {
+        etiqueta.innerHTML = 'DESCANSO 🍙🥤';
+        timer = 10 * 60; // Pomodoro de 1 minuto de trabajo
+      }
+
+      sound.play();
+
+      if (pomoCount % 3 === 2) { // Se completa 1 pomo después del segundo descanso
+        pomoCount++;
+        pomo.innerHTML = Math.ceil(pomoCount / 3);
+      }
+
+      if (pomoCount === pomodoroTotal * 3) {
         clearInterval(interval);
-        console.log("Se completaron los 12 pomos");
-        sound.play()
+        console.log(`Se completaron ${pomodoroTotal} pomodoros`);
+        sound.play();
         return;
       }
 
-      // Iniciar cuenta regresiva de 10 minutos
-      timer = 10 * 60;
       pomoCount++;
-      etiqueta.innerHTML = 'DESCANSO'
-      pomo.innerHTML = pomoCount
     }
   }, 1000);
 }
@@ -57,7 +69,6 @@ function stopTimer() {
 function restartTimer() {
   stopTimer();
   timer = savedTimer;
-  pomoCount = 0;
   etiqueta.innerHTML = '💻'
   startTimer();
   sound.play()
@@ -66,7 +77,6 @@ function restartTimer() {
 function restartBreak() {
   stopTimer();
   timer = 10 * 60;
-  pomoCount = 0;
   etiqueta.innerHTML = 'DESCANSO'
   startTimer();
   sound.play()
@@ -74,32 +84,26 @@ function restartBreak() {
 
 function restartPomo() {
   stopTimer();
-  timer = 60 * 60;
-  pomoCount = 0;
+  timer = 1 * 60;
   etiqueta.innerHTML = 'PRODUCTIVO'
   startTimer();
   sound.play()
 }
 
-
 function pomoi(num) {
-  pomoCount = num
-  pomo.innerHTML = pomoCount
+  pomoCount = num * 2 - 1; // El número ingresado es el número de pomos completados, no el número de descansos
+  pomo.innerHTML = Math.ceil(pomoCount / 2);
 }
 
 function pomot(num) {
   pomodoroTotal = num;
-  pomoTotal.innerHTML = pomodoroTotal
-
+  pomoTotal.innerHTML = pomodoroTotal;
 }
-
-
 
 // Conectar a Twitch a través de tmi.js
 const client = new tmi.Client({
-  channels: ['cuartodechenz']
+  channels: ['brunispet']
 });
-
 
 client.connect();
 
@@ -144,7 +148,6 @@ client.on("chat", function (channel, userstate, message, self) {
   }
 });
 
-startTimer()
 
 
 
