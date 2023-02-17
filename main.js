@@ -32,18 +32,18 @@ function startTimer() {
 
     if (--timer < 0) {
       if (pomoCount % 3 === 0) {
-        timer = 10 * 60; // Pomodoro de 1 minuto de trabajo
+        timer = 1 * 60; // Pomodoro de 1 minuto de trabajo
         etiqueta.innerHTML = 'DESCANSO 🍙🥤';
 
       } else if (pomoCount % 3 === 1) {
-        timer = 60 * 60; // Pomodoro de 2 minutos de descanso
+        timer = 2 * 60; // Pomodoro de 2 minutos de descanso
         if (!autoTimer) {
           stopTimer()
         }
         etiqueta.innerHTML = 'PRODUCTIVO 📚📖';
 
       } else {
-        timer = 10 * 60; // Pomodoro de 1 minuto de trabajo
+        timer = 1 * 60; // Pomodoro de 1 minuto de trabajo
         if (!autoTimer) {
           stopTimer()
         }
@@ -69,7 +69,7 @@ function startTimer() {
       pomoCount++;
     }
 
-  }, 1000);
+  }, 10);
 }
 
 function audioAviso() {
@@ -121,7 +121,7 @@ function pomot(num) {
 
 // Conectar a Twitch a través de tmi.js
 const client = new tmi.Client({
-  channels: ['cuartodechenz']
+  channels: ['brunispet']
 });
 
 client.connect();
