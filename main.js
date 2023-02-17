@@ -4,7 +4,10 @@ const pomoTotal = document.querySelector('#pomo-num-total')
 const etiqueta = document.querySelector('#etiqueta')
 import tmi from 'tmi.js'
 
-
+document.addEventListener('click', function () {
+  audioAviso();
+  document.removeEventListener('click', arguments.callee);
+});
 
 
 // Variables necesarias
