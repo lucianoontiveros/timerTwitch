@@ -69,7 +69,7 @@ function startTimer() {
       pomoCount++;
     }
 
-  }, 100);
+  }, 1000);
 }
 
 function audioAviso() {
