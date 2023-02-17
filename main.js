@@ -102,7 +102,7 @@ function pomot(num) {
 
 // Conectar a Twitch a través de tmi.js
 const client = new tmi.Client({
-  channels: ['brunispet']
+  channels: ['cuartodechenz']
 });
 
 client.connect();
