@@ -8,7 +8,7 @@ var sound = new Audio("music.mp3");
 // Variables necesarias
 var timer = 10 * 60;
 var pomoCount = 0;
-var pomodoroTotal = 3;
+var pomodoroTotal = 14;
 var interval;
 var minutos;
 var segundos;
