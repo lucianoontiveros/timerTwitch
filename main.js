@@ -77,7 +77,7 @@ function startTimer() {
 
 function audioAviso() {
   const audio = new Audio();
-  audio.src = './campana.mp3';
+  audio.src = 'campana.mp3';
   audio.play()
 }
 
