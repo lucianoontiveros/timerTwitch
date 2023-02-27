@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: aliceblue;
+  margin: 0px auto;
+  overflow: hidden;
+}
+
+#contenedor {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.947);
+  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+}
+
+#timer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#pomos {
+  margin-left: 16px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#horarios {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 500px;
+}
+
+#horarios div {
+  margin-top: 0.5em;
+}
