@@ -1,5 +1,5 @@
 
-## INTRODUCCION
+## INTRODUCCIÓN
 
 El timer del [Cuarto de Chenz](https://www.twitch.tv/cuartodechenz "Cuarto de Chenz") está hecho con muy poco conocimiento de programación. Se necesita una  base sólida si se desea  crear grandes cosas; sin embargo, por pequeño que sea, es un gran paso para mí. Llevo de manera autodidacta estudiando programación  y para ser sincero, es un tiempo acotado para dominar varias tecnologías. Pero dicen que la necesidad es un empuje, y ahora me encuentro haciendo directos de Study With me y necesitaba un timer, una cuenta regresiva que me permitiera marcar los pomodoros de estudio. Mi idea siempre fue poder brindarle instrucciones desde el chat de Twitch. Por lo cual de manera precaria termine por crear este componente que dejo a su disposición para que utilicen y si lo desean, mejorarlo.
 
@@ -14,7 +14,7 @@ Para crear este timer necesitaba saber algún framework o librería como React, 
 ## COMPORTAMIENTO
 El timer se ejecuta con un tiempo de iniciación. Es una funcionalidad característica de cualquier directo, empleado  al comienzo de la emisión para esperar al público de Twitch. Por defecto es de 5 minutos y al terminar itera otra cuenta regresiva de 10 minutos que se emplean como espacio para interactuar con las personas del chat. Terminado estos tiempos se empieza el momento productivo que tiene una duración de 60 minutos. Sin embargo, cada persona puede configurarlo con el tiempo que crea conveniente desde el código fuente.
 
-## CONFIGURACION
+## CONFIGURACIÓN
 De acuerdo a los tiempos que desee determinar deberá ingresar al archivo main.js y cambiar los tiempos que crea convenientes:
     var timer = 5 * 60; // El pomo de inicio de 5 minutos, ajustar según lo que se necesite.
 
