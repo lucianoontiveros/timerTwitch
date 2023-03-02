@@ -5,7 +5,7 @@ El timer del [Cuarto de Chenz](https://www.twitch.tv/cuartodechenz "Cuarto de Ch
 
 
 
-[![ha-OQ1c-K-Imgur.png](https://i.postimg.cc/ZqRbtpzg/ha-OQ1c-K-Imgur.png)](https://postimg.cc/JsfVjync)
+[![imagen-1.png](https://i.postimg.cc/xjX3y7mW/imagen-1.png)](https://postimg.cc/NLwXQdp4)
 
 ## CONTRIBUCIONES
 
@@ -55,7 +55,7 @@ Finalmente, hay que ingresar el nombre del canal donde queremos controlar el tim
       const mod = userstate?.mod
       const num = parseInt(args)
       if (username === 'cuartodechenz' || mod) { //aqui cambiamos el nombre del canal
-[![image.png](https://i.postimg.cc/fT1gKVxx/image.png)](https://postimg.cc/crMm14kH)
+[![imagen-2.png](https://i.postimg.cc/QNvk6bkV/imagen-2.png)](https://postimg.cc/c6MnCfzN)
 
 **Los pomos se comenzarán a contar a partir que el timer ya hubiera recorrido el tiempo de iniciación, el break de inicio y el primer pomodoro**. Cumplida esas condiciones por cada pomo productivo comenzará a imputarlo en el marcador. En pantalla se exponen los numeros de los pomo que pasaron y la cantidad de pomos totales.
 
@@ -79,7 +79,7 @@ Los comandos para ejecutar el codigo son los siguientes:
 **- !pause:**Esto pausará el tiempo, y simplemente con ingresar !start iniciará sin problemas desde donde lo dejaste, ejecutando la secuencia en la que se encontraba.
 
 
-[![image.png](https://i.postimg.cc/43nyg4LN/image.png)](https://postimg.cc/jW0t6TYG)
+[![imagen-3.png](https://i.postimg.cc/rwkGTwHk/imagen-3.png)](https://postimg.cc/dL5ZmwvH)
 
 ### **IMPORTANTE**
 Al vincular con obs, navegador, ubicación local, seleccionar el archivo index.html, no ingresar la opción reiniciar y apagar fuente cuando no sea visible, como tampoco actualizar la escena cuando se active.
