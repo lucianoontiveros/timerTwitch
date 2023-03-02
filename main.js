@@ -7,9 +7,9 @@ const etiqueta = document.querySelector('#etiqueta')
 
 
 // Función para iniciar la cuenta regresiva
-var timer = 1 * 60;
+var timer = 5 * 60; // El pomo de inicio de 5 minutos, ajustar según lo que se necesite.
 var pomoCount = 0;
-var pomodoroTotal = 7;
+var pomodoroTotal = 5;
 var interval;
 var minutos;
 var segundos;
@@ -32,18 +32,18 @@ function startTimer() {
 
     if (--timer < 0) {
       if (pomoCount % 3 === 0) {
-        timer = 10 * 60; // Pomodoro de 10 minuto de descanso
+        timer = 10 * 60; // Pomodoro de 10 minuto de descanso, ajustar según lo que crean necesario.
         etiqueta.innerHTML = 'DESCANSO 🍙🥤';
 
       } else if (pomoCount % 3 === 1) {
-        timer = 60 * 60; // Pomodoro de 60 minutos de trabajo
+        timer = 2 * 60; // Pomodoro de 60 minutos de trabajo, ajustar según lo que crean necesario.
         if (!autoTimer) {
           stopTimer()
         }
         etiqueta.innerHTML = 'PRODUCTIVO 📚📖';
 
       } else {
-        timer = 10 * 60; // Pomodoro de 1 minuto de trabajo
+        timer = 10 * 60; // Pomodoro de 10 minutos de descanso, ajustar según lo que crean necesario.
         if (!autoTimer) {
           stopTimer()
         }
@@ -60,13 +60,14 @@ function startTimer() {
         console.log(`Se completaron ${pomodoroTotal} pomodoros`);
         etiqueta.innerHTML = '🚨FINAL DE STREAM 🚨';
         iniciado = false;
-        return; audioAviso()
+        audioAviso()
+        return;
       }
       audioAviso()
       pomoCount++;
     }
 
-  }, 1000);
+  }, 100);
 }
 
 
@@ -82,28 +83,12 @@ function stopTimer() {
   clearInterval(interval);
 }
 
-// Función para reiniciar el timer
-function restartTimer() {
-  stopTimer();
-  timer = savedTimer;
-  if (!iniciado) {
-    iniciado = true;
-    startTimer()
-  } else {
-    console.log('Ya hay un timer activo')
-  }
-}
 
 function timerAuto() {
   if (!autoTimer) return autoTimer = true
   if (autoTimer) return autoTimer = false
 }
 
-
-function pomoti(num) {
-  pomoCount = pomoCount * 3;
-  pomo.innerHTML = num;
-}
 
 function pomot(num) {
   pomodoroTotal = num;
@@ -150,9 +135,6 @@ client.on("chat", function (channel, userstate, message, self) {
       case "min":
         minutosOn(num)
         break;
-      case "pomoi":
-        pomoti(num)
-        break;
       case "pomot":
         pomot(num)
         break;
@@ -162,6 +144,7 @@ client.on("chat", function (channel, userstate, message, self) {
 
   }
 });
+
 
 
 
